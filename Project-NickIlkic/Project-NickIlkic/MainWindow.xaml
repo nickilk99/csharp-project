@@ -1,0 +1,100 @@
+﻿<Window x:Class="Project_NickIlkic.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_NickIlkic"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <TabControl>
+            <TabItem  Header="Add a Book">
+                <Grid Margin="10" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100px"/>
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"  />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" FontWeight="Bold">Title:</Label>
+                    <TextBox Name="txtTitle" Grid.Column="1" />
+                    <Label Grid.Row="1" FontWeight="Bold">Author:</Label>
+                    <TextBox Name="txtAuthor" Grid.Row="1" Grid.Column="1" />
+                    <Label Grid.Row="2" FontWeight="Bold">ISDN:</Label>
+                    <TextBox Name="txtISDN" Grid.Row="2" Grid.Column="1" />
+                    <Button Grid.Row="3" Grid.Column="1" Margin="100, 10, 200, 70" Click="Button_Click">Reset</Button>
+                    <Button Grid.Row="3" Grid.Column="1" Margin="150, 10, 150, 70" Click="Button_Click_1">Save</Button>
+                </Grid>
+            </TabItem>
+            <TabItem Name="Tab2" Header="List of Books">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="125*"/>
+                        <ColumnDefinition Width="661*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="BooksDataGrid"
+                  ItemsSource="{Binding Books}"
+                  AutoGenerateColumns="False" Grid.ColumnSpan="2" MouseDoubleClick="BooksDataGrid_MouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="idColumn"
+                                    Header="Id"
+                                    Binding="{Binding Id}"
+                                    Width="SizeToHeader"/>
+                            <DataGridTextColumn x:Name="titleColumn"
+                                    Header="Title"
+                                    Binding="{Binding Title}"
+                                    Width="SizeToHeader"/>
+                            <DataGridTextColumn x:Name="authorColumn"
+                                    Header="Author"
+                                    Binding="{Binding Author}"
+                                    Width="SizeToHeader"/>
+                            <DataGridTextColumn x:Name="isdnColumn"
+                                    Header="ISDN"
+                                    Binding="{Binding ISDN}"
+                                    Width="SizeToHeader"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Name="Tab3" Header="List of Users">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="125*"/>
+                        <ColumnDefinition Width="661*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="UsersDataGrid"
+                  ItemsSource="{Binding VWBorroweds}"
+                  AutoGenerateColumns="True" Grid.ColumnSpan="2" MouseDoubleClick="BooksDataGrid_MouseDoubleClick">
+                        <DataGrid.Columns>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Name="Tab4" Header="Lend a Book">
+                <Grid Margin="10" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100px"/>
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"  />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" FontWeight="Bold">User:</Label>
+                    <ComboBox Name="cbUsers" Grid.Column="1" ItemsSource="{Binding Users}"></ComboBox>
+                    <Label Grid.Row="1" FontWeight="Bold">Book:</Label>
+                    <ComboBox Grid.Column="1" Grid.Row="1" Name="cbBooks" ItemsSource="{Binding Books}"></ComboBox>
+                    <Button Grid.Row="3" Grid.Column="1" Margin="100, 10, 200, 70" Click="Button_Click">Reset</Button>
+                    <Button Grid.Row="3" Grid.Column="3" Margin="150, 10, 150, 70" Click="Button_Click_2" >Checkout</Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
